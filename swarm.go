@@ -289,18 +289,21 @@ func (s *Swarm) Run(
 			history = append(history, message)
 
 			// Break the outer loop if the assistant didn't make a function call
-			if message.FunctionCall == nil || !executeTools {
+			if message.ToolCalls == nil || !executeTools {
 				if debug {
 					log.Println("Ending turn.")
 				}
 				break
 			}
+		} else {
+			break
 		}
 	}
 
 	// Return the final response
 	return Response{
 		Messages:         history[initLen:],
+		History:          history,
 		Agent:            activeAgent,
 		ContextVariables: contextVariables,
 	}, nil
