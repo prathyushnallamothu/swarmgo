@@ -10,15 +10,14 @@ import (
 	openai "github.com/sashabaranov/go-openai"
 )
 
-func getWeather(args map[string]interface{}, contextVariables map[string]interface{}) swarmgo.Result {
+func getWeather1(args map[string]interface{}, contextVariables map[string]interface{}) swarmgo.Result {
 	location := args["location"].(string)
 	return swarmgo.Result{
 		Value: fmt.Sprintf("{'temp':67, 'unit':'F', 'location':'%s'}", location),
 	}
 }
-func main() {
+func functionCallExample() {
 	dotenv.Load()
-
 	client := swarmgo.NewSwarm(os.Getenv("OPENAI_API_KEY"))
 
 	agent := &swarmgo.Agent{
@@ -38,7 +37,7 @@ func main() {
 					},
 					"required": []string{"location"},
 				},
-				Function: getWeather,
+				Function: getWeather1,
 			},
 		},
 		Model: "gpt-4",

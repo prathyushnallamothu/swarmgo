@@ -22,10 +22,11 @@ func transferToSpanishAgent(args map[string]interface{}, contextVariables map[st
 		Value: "Transferring to Spanish Agent.",
 	}
 }
-func main() {
+func agentHandoffExample() {
 	dotenv.Load()
 
 	client := swarmgo.NewSwarm(os.Getenv("OPENAI_API_KEY"))
+	fmt.Println("Agent Handoff Example", os.Getenv("OPENAI_API_KEY"), os.Getenv("OPENAI_PROXY"))
 
 	englishAgent := &swarmgo.Agent{
 		Name:         "EnglishAgent",

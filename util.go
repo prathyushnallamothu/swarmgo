@@ -8,8 +8,8 @@ import (
 
 // FunctionToDefinition converts an AgentFunction to an openai.FunctionDefinition.
 // It directly assigns the Name, Description, and Parameters from the AgentFunction.
-func FunctionToDefinition(af AgentFunction) openai.FunctionDefinition {
-	return openai.FunctionDefinition{
+func FunctionToDefinition(af AgentFunction) *openai.FunctionDefinition {
+	return &openai.FunctionDefinition{
 		Name:        af.Name,
 		Description: af.Description,
 		Parameters:  af.Parameters, // Assign directly without marshaling

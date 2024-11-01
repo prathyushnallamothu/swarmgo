@@ -146,7 +146,7 @@ func initAgents() {
 	})
 }
 
-func main() {
+func triageAgentExample() {
 	dotenv.Load()
 
 	client := swarmgo.NewSwarm(os.Getenv("OPENAI_API_KEY"))

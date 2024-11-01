@@ -30,7 +30,7 @@ func sendEmail(args map[string]interface{}, contextVariables map[string]interfac
 	}
 }
 
-func main() {
+func weatherAgentExample() {
 	dotenv.Load()
 
 	client := swarmgo.NewSwarm(os.Getenv("OPENAI_API_KEY"))

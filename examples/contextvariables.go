@@ -26,7 +26,7 @@ func printAccountDetails(args map[string]interface{}, contextVariables map[strin
 		Value: fmt.Sprintf("Account Details: %v %v", name, userID),
 	}
 }
-func main() {
+func contextVariablesExample() {
 	dotenv.Load()
 
 	client := swarmgo.NewSwarm(os.Getenv("OPENAI_API_KEY"))
