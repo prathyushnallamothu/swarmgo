@@ -10,7 +10,7 @@ import (
 	openai "github.com/sashabaranov/go-openai"
 )
 
-func main() {
+func basicExample() {
 	dotenv.Load()
 
 	client := swarmgo.NewSwarm(os.Getenv("OPENAI_API_KEY"))
