@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"testing"
+	"time"
 
 	"github.com/prathyushnallamothu/swarmgo/llm"
 	"github.com/stretchr/testify/assert"
@@ -150,6 +151,26 @@ func TestHandleToolCallFunctionNotFound(t *testing.T) {
 	assert.Len(t, response.Messages, 1)
 	assert.Equal(t, llm.RoleAssistant, response.Messages[0].Role)
 	assert.Contains(t, response.Messages[0].Content, "Error: Tool nonExistentFunction not found.")
+}
+
+// TestMemoryStore tests the MemoryStore methods
+func TestMemoryStore(t *testing.T) {
+	ms := NewMemoryStore(10)
+	ms.AddMemory(Memory{Content: "Hello, world!", Type: "conversation", Timestamp: time.Now(), Importance: 0.5})
+	assert.Len(t, ms.shortTerm, 1)
+	assert.Len(t, ms.longTerm["conversation"], 1)
+
+	ms.RemoveMemory(ms.shortTerm[0].Content, ms.shortTerm[0].Type)
+	assert.Len(t, ms.shortTerm, 0)
+	assert.Len(t, ms.longTerm["conversation"], 0)
+
+	ms.AddMemory(Memory{Content: "Hello, world!", Type: "conversation", Timestamp: time.Now(), Importance: 0.5})
+	assert.Len(t, ms.shortTerm, 1)
+	assert.Len(t, ms.longTerm["conversation"], 1)
+
+	ms.RemoveMemory("Hello, world!", "conversation")
+	assert.Len(t, ms.shortTerm, 0)
+	assert.Len(t, ms.longTerm["conversation"], 0)
 }
 
 // TestRun tests the Run method
