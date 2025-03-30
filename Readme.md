@@ -1,5 +1,5 @@
 ![Swarmgo Logo](assets/logo.png)
-# SwarmGo
+# SwarmGo (agents-sdk-go)
 
 SwarmGo is a Go package that allows you to create AI agents capable of interacting, coordinating, and executing tasks. Inspired by OpenAI's Swarm framework, SwarmGo focuses on making agent coordination and execution lightweight, highly controllable, and easily testable.
 
