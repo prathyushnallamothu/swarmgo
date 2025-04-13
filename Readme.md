@@ -83,7 +83,9 @@ func main() {
 ```
 
 ## Usage
-Creating an Agent
+
+### Creating an Agent
+
 An Agent represents an AI assistant with specific instructions and functions (tools) it can use.
 
 ```go
