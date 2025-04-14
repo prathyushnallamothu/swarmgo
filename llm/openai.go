@@ -30,13 +30,16 @@ func NewOpenAILLMWithHost(apiKey string, host string) *OpenAILLM {
 
 // convertToOpenAIMessages converts our generic Message type to OpenAI's message type
 func convertToOpenAIMessages(messages []Message) []openai.ChatCompletionMessage {
-	openAIMessages := make([]openai.ChatCompletionMessage, len(messages))
-	for i, msg := range messages {
-		openAIMessages[i] = openai.ChatCompletionMessage{
+	openAIMessages := []openai.ChatCompletionMessage{}
+	for _, msg := range messages {
+		if msg.Content == "" {
+			continue
+		}
+		openAIMessages = append(openAIMessages, openai.ChatCompletionMessage{
 			Role:    string(msg.Role),
 			Content: msg.Content,
 			Name:    msg.Name,
-		}
+		})
 	}
 	return openAIMessages
 }
